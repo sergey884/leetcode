@@ -39,6 +39,5 @@ pTree.right = new TreeNode(3);
 const qTree = new TreeNode(1);
 qTree.left = new TreeNode(2);
 qTree.right = new TreeNode(3);
-console.log('pTree: ', pTree)
-console.log('qTree: ', qTree)
+
 console.log('qTree: ', isSameTree(pTree, qTree));
