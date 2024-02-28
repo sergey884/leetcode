@@ -9,17 +9,18 @@ class Solution:
 
     for row in range(9):
       for col in range(9):
-        if board[row][col] == '.':
+        num = board[row][col]
+        if num == '.':
           continue
         
-        if (board[row][col] in rows[row] or
-          board[row][col] in cols[col] or
-          board[row][col] in squares[(row // 3, col // 3)]):
+        if (num in rows[row] or
+          num in cols[col] or
+          num in squares[(row // 3, col // 3)]):
           return False
-        print(squares)
-        rows[row].add(board[row][col])
-        cols[col].add(board[row][col])
-        squares[(row // 3, col // 3)].add(board[row][col])
+
+        rows[row].add(num)
+        cols[col].add(num)
+        squares[(row // 3, col // 3)].add(num)
 
     return True
   

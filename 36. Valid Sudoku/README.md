@@ -61,7 +61,8 @@ const isValidSudoku = (board) => {
 
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
-      if (board[row][col] === '.') {
+      let num = board[row][col];
+      if (num === '.') {
         continue;
       }
 
@@ -79,17 +80,17 @@ const isValidSudoku = (board) => {
         squars.set(squareKey, new Set());
       }
 
-      let isInRows = rows.get(row).has(board[row][col]);
-      let isInCols = cols.get(col).has(board[row][col]);
-      let isInSquare = squars.get(squareKey).has(board[row][col]);
+      let isInRows = rows.get(row).has(num);
+      let isInCols = cols.get(col).has(num);
+      let isInSquare = squars.get(squareKey).has(num);
 
       if (isInRows || isInCols || isInSquare) {
         return false;
       }
 
-      rows.get(row).add(board[row][col])
-      cols.get(col).add(board[row][col]);
-      squars.get(squareKey).add(board[row][col]);
+      rows.get(row).add(num)
+      cols.get(col).add(num);
+      squars.get(squareKey).add(num);
     }
   }
   
@@ -107,17 +108,18 @@ class Solution:
 
     for row in range(9):
       for col in range(9):
-        if board[row][col] == '.':
+        num = board[row][col]
+        if num == '.':
           continue
         
-        if (board[row][col] in rows[row] or
-          board[row][col] in cols[col] or
-          board[row][col] in squares[(row // 3, col // 3)]):
+        if (num in rows[row] or
+          num in cols[col] or
+          num in squares[(row // 3, col // 3)]):
           return False
-        
-        rows[row].add(board[row][col])
-        cols[col].add(board[row][col])
-        squares[(row // 3, col // 3)].add(board[row][col])
+
+        rows[row].add(num)
+        cols[col].add(num)
+        squares[(row // 3, col // 3)].add(num)
 
     return True
 ```
