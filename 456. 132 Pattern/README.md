@@ -38,6 +38,44 @@ Return `true` if there is a **132 pattern** in `nums`, otherwise, return `false`
 
 ## Solutions
 
+### Javascript
+```javascript
+const find132pattern = (nums) => {
+  const stack = [];
+  let value3InPattern = -Infinity;
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    if (nums[i] < value3InPattern) {
+      return true;
+    } else {
+      while (stack.length && stack[stack.length - 1] < nums[i]) {
+        value3InPattern = stack.pop()
+      }
+    }
+
+    stack.push(nums[i])
+  }
+
+  return false;
+};
+```
+
 ### Python
 ```python
+class Solution:
+  def find132pattern(self, nums: List[int]) -> bool:
+    stack = []
+    minSoFar = nums[0]
+
+    for n in nums[1:]:
+      while stack and n >= stack[-1][0]:
+        stack.pop()
+
+      if stack and n > stack[-1][1]:
+        return True
+      
+      stack.append([n, minSoFar])
+      minSoFar = min(minSoFar, n)
+    
+    return False
 ```

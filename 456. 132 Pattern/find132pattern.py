@@ -3,7 +3,7 @@ from typing import List
 class Solution:
   def find132pattern(self, nums: List[int]) -> bool:
     stack = []
-    curMin = nums[0]
+    minSoFar = nums[0]
 
     for n in nums[1:]:
       while stack and n >= stack[-1][0]:
@@ -12,8 +12,8 @@ class Solution:
       if stack and n > stack[-1][1]:
         return True
       
-      stack.append([n, curMin])
-      curMin = min(curMin, n)
+      stack.append([n, minSoFar])
+      minSoFar = min(minSoFar, n)
     
     return False
 
