@@ -33,5 +33,20 @@ return the root of the binary tree `[4, 5, 2, #, #, 3, 1]`.
 
 ### Python
 ```python
+class Solution:
+  def upsideDownBinaryTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    if not root or not root.left:
+      return root
+    
+    leftChild = root.left
+    rightChild = root.right
+    
+    newRoot = self.upsideDownBinaryTree(leftChild)
 
+    leftChild.right = root
+    leftChild.left = rightChild
+    root.left = None
+    root.right = None
+
+    return newRoot
 ```

@@ -11,9 +11,13 @@ class Solution:
     if not root or not root.left:
       return root
     
-    newRoot = self.upsideDownBinaryTree(root.left)
-    root.left.right = root
-    root.left.left = root.right
+    leftChild = root.left
+    rightChild = root.right
+    
+    newRoot = self.upsideDownBinaryTree(leftChild)
+
+    leftChild.right = root
+    leftChild.left = rightChild
     root.left = None
     root.right = None
 
