@@ -28,7 +28,23 @@ return the root of the binary tree `[4, 5, 2, #, #, 3, 1]`.
 
 ### Javascript
 ```javascript
+const upsideDownBinaryTree = (root) => {
+  if (!root || !root.left) {
+    return root;
+  }
 
+  let leftChild = root.left;
+  let rightChild = root.right;
+
+  let newRoot = upsideDownBinaryTree(leftChild);
+
+  leftChild.right = root;
+  leftChild.left = rightChild;
+  root.left = null;
+  root.right = null;
+
+  return newRoot;
+};
 ```
 
 ### Python
