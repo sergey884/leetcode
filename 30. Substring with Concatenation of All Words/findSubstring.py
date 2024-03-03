@@ -1,46 +1,5 @@
 from typing import List
 
-# class Solution:
-#   def findSubstring(self, s: str, words: List[str]) -> List[int]:
-#     if not s or not words:
-#       return []
-    
-#     wordLen = len(words[0])
-#     totalLen = len(words) * wordLen
-
-#     wordCount = {}
-
-#     for word in words:
-#       if word not in wordCount:
-#         wordCount[word] = 0
-#       wordCount[word] += 1
-
-#     res = []
-
-#     for i in range(len(s) - totalLen + 1):
-#       window = s[i:i + totalLen]
-#       print('window: ', window)
-#       wordCountInWindow = {}
-
-#       for j in range(0, totalLen, wordLen):
-#         word = window[j:j + wordLen]
-
-#         if word not in wordCount:
-#           break
-
-#         if word in wordCount and word in wordCountInWindow and wordCountInWindow[word] > wordCount[word]:
-#           break
-
-#         if word not in wordCountInWindow:
-#           wordCountInWindow[word] = 0
-
-#         wordCountInWindow[word] += 1
-
-#       if wordCount == wordCountInWindow:
-#         res.append(i)
-
-#     return res
-
 class Solution:
   def findSubstring(self, s: str, words: List[str]) -> List[int]:
     if not s or not words:
