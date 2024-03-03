@@ -6,7 +6,7 @@ class ListNode {
   }
 }
 
-// helper function got generate LinkedList from array
+// helper function to generate LinkedList from array
 const arrayToLinkedList = (arr) => {
   if (!arr || !arr.length) {
     return null;

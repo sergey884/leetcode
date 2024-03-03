@@ -5,7 +5,7 @@ class ListNode:
     self.val = val
     self.next = next
 
-# helper function got generate LinkedList from array
+# helper function to generate LinkedList from array
 def arrayToLinkedList(arr: Optional[List]) -> Optional[ListNode]:
   if not arr:
     return None
