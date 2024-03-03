@@ -58,10 +58,101 @@ Return the starting indices of all the concatenated substrings in `s`. You can r
 
 ### Javascript
 ```javascript
+const findSubstring = (s, words) => {
+  if (!s || !words || !words.length) {
+    return [];
+  }
 
+  const wordlen = words[0].length;
+  const wordslen = words.length;
+  const windowLength = wordlen * wordslen;
+
+  const wordCount = {};
+
+  for(let i = 0; i < wordslen; i++) {
+    if (!wordCount[words[i]]) {
+      wordCount[words[i]] = 0;
+    }
+
+    wordCount[words[i]]++;
+  }
+
+  const res = [];
+
+  for(let i = 0; i < s.length - windowLength + 1; i++) {
+    let wordsCountInWindow = {}
+
+    let j = i;
+    while (j < i + windowLength) {
+      let word = s.substring(j, j + wordlen);
+
+      if (!wordCount[word]) {
+        break;
+      }
+
+      if (!wordsCountInWindow[word]) {
+        wordsCountInWindow[word] = 0;
+      }
+
+      wordsCountInWindow[word]++;
+
+      if (wordsCountInWindow[word] > wordCount[word]) {
+        break;
+      }
+
+      j += wordlen;
+    }
+
+    if (j === i + windowLength) {
+      res.push(i);
+    }
+  }
+
+  return res;
+};
 ```
 
 ### Python
 ```python
+class Solution:
+  def findSubstring(self, s: str, words: List[str]) -> List[int]:
+    if not s or not words:
+      return []
+    
+    wordLen = len(words[0])
+    totalLen = len(words) * wordLen
 
+    wordCount = {}
+
+    for word in words:
+      if word not in wordCount:
+        wordCount[word] = 0
+      wordCount[word] += 1
+
+    res = []
+
+    for i in range(len(s) - totalLen + 1):
+      wordCountInWindow = {}
+      j = i
+
+      while j < i + totalLen:
+        word = s[j:j + wordLen]
+
+        if word not in wordCount:
+          break
+
+        if word not in wordCountInWindow:
+          wordCountInWindow[word] = 0
+
+        wordCountInWindow[word] += 1
+
+        if wordCountInWindow[word] > wordCount[word]:
+          break
+
+        j += wordLen
+
+      if j == i + totalLen:
+        res.append(i)
+
+    return res
 ```
