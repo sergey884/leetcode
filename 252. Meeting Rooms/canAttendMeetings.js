@@ -15,4 +15,4 @@ const canAttendMeetings = (intervals) => {
 };
 
 const intervals = [[7, 10], [2, 4]];
-console.log('canAttendMeetings: ', canAttendMeetings(intervals))
+console.log('canAttendMeetings: ', canAttendMeetings(intervals));
