@@ -31,5 +31,66 @@ Given a **sorted** integer array nums and three integers `a`, `b` and `c`, apply
 
 ### Python
 ```python
+class Solution:
+  def calc(self, x: int, a: int, b: int, c: int) -> int:
+    return a * x ** 2 + b * x + c
 
+  def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
+    l = len(nums)
+    res = [0] * l
+    left, right = 0, l - 1
+    index = 0 if a <= 0 else l - 1
+
+    compare = lambda x, y: x >= y if a >= 0 else x <= y
+
+    while left <= right:
+      leftVal = self.calc(nums[left], a, b, c)
+      rightVal = self.calc(nums[right], a, b, c)
+
+      if compare(leftVal, rightVal):
+        res[index] = leftVal
+        left += 1
+      else:
+        res[index] = rightVal
+        right -= 1
+
+      index += (1 if a <= 0 else -1)
+
+    return res
+```
+
+### Python (Without compare function)
+```python
+class Solution:
+  def calc(self, x: int, a: int, b: int, c: int) -> int:
+    return a * x ** 2 + b * x + c
+
+  def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
+    l = len(nums)
+    res = [0] * l
+    left, right = 0, l - 1
+    index = 0 if a <= 0 else l - 1
+
+    while left <= right:
+      left_val = self.calc(nums[left], a, b, c)
+      right_val = self.calc(nums[right], a, b, c)
+
+      if a < 0:
+        if left_val <= right_val:
+          res[index] = left_val
+          left += 1
+        else:
+          res[index] = right_val
+          right -= 1
+      else:
+        if left_val >= right_val:
+          res[index] = left_val
+          left += 1
+        else:
+          res[index] = right_val
+          right -= 1
+
+      index += (1 if a <= 0 else -1)
+
+    return res
 ```
