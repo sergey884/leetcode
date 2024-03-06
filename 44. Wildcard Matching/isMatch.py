@@ -21,6 +21,6 @@ class Solution:
     return dp[n][m]
   
 s = "aa"
-p = "a?"
+p = "a"
 solution = Solution()
 print('isMatch: ', solution.isMatch(s, p))
