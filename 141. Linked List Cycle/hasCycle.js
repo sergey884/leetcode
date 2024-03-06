@@ -6,7 +6,6 @@ class ListNode {
   }
 }
 
-
 /**
  * @param {ListNode} head
  * @return {boolean}
