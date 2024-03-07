@@ -57,7 +57,6 @@ const twoSum = (nums, target) => {
   
   return [];
 };
-
 ```
 
 ### Python
