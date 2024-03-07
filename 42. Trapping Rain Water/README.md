@@ -29,9 +29,44 @@ Given `n` non-negative integers representing an elevation map where the width of
 ### Javascript
 > Time Complexity: `O(n)`
 >
+> Memory: `O(1)`
+```javascript
+const trap = (height) => {
+  if (!height || !height.length) {
+    return 0;
+  }
+
+  let left = 0;
+  let right = height.length - 1;
+  let maxLeft = height[left];
+  let maxRight = height[right];
+  let waterTrapped = 0;
+
+  while (left < right) {
+    if (maxLeft < maxRight) {
+      left += 1;
+      maxLeft = Math.max(maxLeft, height[left]);
+      waterTrapped += maxLeft - height[left];
+    } else {
+      right -= 1;
+      maxRight = Math.max(maxRight, height[right]);
+      waterTrapped += maxRight - height[right];
+    }
+  }
+
+  return waterTrapped;
+};
+```
+
+> Time Complexity: `O(n)`
+>
 > Memory: `O(n)`
 ```javascript
 const trap = (height) => {
+  if (!height || !height.length) {
+    return 0;
+  }
+
   const n = height.length;
   const leftMax = Array(n).fill(0);
   const rightMax = Array(n).fill(0);
@@ -57,10 +92,39 @@ const trap = (height) => {
 ### Python
 > Time Complexity: `O(n)`
 >
+> Memory: `O(1)`
+```python
+class Solution:
+  def trap(self, height: List[int]) -> int:
+    if not height:
+      return 0
+
+    left, right = 0, len(height) - 1
+    leftMax, rightMax = height[left], height[right]
+    waterTrapped = 0
+
+    while left < right:
+      if leftMax < rightMax:
+        left += 1
+        leftMax = max(leftMax, height[left])
+        waterTrapped += leftMax - height[left]
+      else:
+        right -= 1
+        rightMax = max(rightMax, height[right])
+        waterTrapped += rightMax - height[right]
+
+    return waterTrapped
+```
+
+> Time Complexity: `O(n)`
+>
 > Memory: `O(n)`
 ```python
 class Solution:
   def trap(self, height: List[int]) -> int:
+    if not height:
+      return 0
+
     n = len(height)
     leftMax = [0] * n
     rightMax = [0] * n

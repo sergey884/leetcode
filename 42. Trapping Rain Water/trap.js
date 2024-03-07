@@ -3,6 +3,10 @@
  * @return {number}
  */
 const trap = (height) => {
+  if (!height || !height.length) {
+    return 0;
+  }
+
   const n = height.length;
   const leftMax = Array(n).fill(0);
   const rightMax = Array(n).fill(0);
@@ -26,4 +30,3 @@ const trap = (height) => {
 
 height = [0,1,0,2,1,0,1,3,2,1,2,1]
 console.log('trap: ', trap(height))
-

@@ -2,6 +2,9 @@ from typing import List
 
 class Solution:
   def trap(self, height: List[int]) -> int:
+    if not height:
+      return 0
+
     n = len(height)
     leftMax = [0] * n
     rightMax = [0] * n
