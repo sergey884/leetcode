@@ -26,7 +26,73 @@ Given a **sorted** integer array nums and three integers `a`, `b` and `c`, apply
 
 ### Javascript
 ```javascript
+const calc = (x, a, b, c) => (a * x ** 2 + b * x + c);
 
+const sortTransformedArray = (nums, a, b, c) => {
+  const l = nums.length;
+  const res = Array(l).fill(0);
+  let left = 0;
+  let right = l - 1;
+  let index = a <= 0 ? 0 : l - 1;
+  const compare = (x, y) => (a >= 0 ? x >= y : x <= y);
+
+  while (left <= right) {
+    let leftVal = calc(nums[left], a, b, c);
+    let rightVal = calc(nums[right], a, b, c);
+
+    if (compare(leftVal, rightVal)) {
+      res[index] = leftVal;
+      left++;
+    } else {
+      res[index] = rightVal;
+      right--;
+    }
+
+    index += (a <= 0 ? 1 : -1);
+  }
+
+  return res;
+};
+```
+
+### Javascript (Without compare function and high readibility)
+```javascript
+const calc = (x, a, b, c) => (a * x ** 2 + b * x + c);
+
+const sortTransformedArray = (nums, a, b, c) => {
+  const l = nums.length;
+  const res = Array(l).fill(0);
+  let left = 0;
+  let right = l - 1;
+  let index = a <= 0 ? 0 : l - 1;
+
+  while (left <= right) {
+    let leftVal = calc(nums[left], a, b, c);
+    let rightVal = calc(nums[right], a, b, c);
+
+    if (a < 0) {
+      if (leftVal <= rightVal) {
+        res[index] = leftVal;
+        left++;
+      } else {
+        res[index] = rightVal;
+        right--;
+      }
+    } else {
+      if (leftVal >= rightVal) {
+        res[index] = leftVal;
+        left++;
+      } else {
+        res[index] = rightVal;
+        right--;
+      }
+    }
+
+    index += (a <= 0 ? 1 : -1);
+  }
+
+  return res;
+};
 ```
 
 ### Python
@@ -59,7 +125,7 @@ class Solution:
     return res
 ```
 
-### Python (Without compare function)
+### Python (Without compare function and high readibility)
 ```python
 class Solution:
   def calc(self, x: int, a: int, b: int, c: int) -> int:
