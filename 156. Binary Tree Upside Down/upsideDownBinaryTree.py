@@ -33,5 +33,3 @@ root.left.right = TreeNode(5)
 
 solution = Solution()
 print('upsideDownBinaryTree: ', solution.upsideDownBinaryTree(root))
-
-
