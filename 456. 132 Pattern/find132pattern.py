@@ -17,6 +17,6 @@ class Solution:
     
     return False
 
-nums = [3,1,4,2]
+nums = [3, 1, 4, 2]
 solution = Solution()
 print('find132pattern: ', solution.find132pattern(nums))

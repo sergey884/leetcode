@@ -21,5 +21,5 @@ const find132pattern = (nums) => {
   return false;
 };
 
-const nums = [-1, 3, 2, 0]
+const nums = [-1, 3, 2, 0];
 console.log('find132pattern: ', find132pattern(nums));
