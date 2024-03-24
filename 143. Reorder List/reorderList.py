@@ -47,10 +47,7 @@ class Solution:
       first = temp1
       second = temp2
 
-      
-# [1,2, 3,4, 5]
-# [1,5, 2,4, 3]     
-        
+     
 solution = Solution()
 head = arrayToLinkedList([1,2,3,4])
 print('reorderList: ', solution.reorderList(head))
