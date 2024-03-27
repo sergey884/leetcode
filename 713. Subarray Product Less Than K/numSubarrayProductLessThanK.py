@@ -18,7 +18,7 @@ class Solution:
       
     return count
       
-nums = [10,5,2,6]
+nums = [10, 5, 2, 6]
 k = 100
 solution = Solution()
 result = solution.numSubarrayProductLessThanK(nums, k)
