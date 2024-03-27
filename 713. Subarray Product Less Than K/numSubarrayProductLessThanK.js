@@ -24,7 +24,7 @@ const numSubarrayProductLessThanK = (nums, k) => {
   return count;
 };
 
-const nums = [10, 5, 2, 6]
-const k = 100
-const result = numSubarrayProductLessThanK(nums, k)
-console.log('numSubarrayProductLessThanK: ', result)
+const nums = [10, 5, 2, 6];
+const k = 100;
+const result = numSubarrayProductLessThanK(nums, k);
+console.log('numSubarrayProductLessThanK: ', result);
