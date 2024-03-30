@@ -23,4 +23,3 @@ nums = [1, 3, 2, 3, 3]
 k = 2
 solution = Solution()
 print('countSubarrays: ', solution.countSubarrays(nums, k))
-          
