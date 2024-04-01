@@ -18,7 +18,5 @@ const lengthOfLastWord = (s) => {
   return lastWordLength;
 };
 
-// const s = "Hello World";
-// const s = "   fly me   to   the moon  ";
-const s = "a";
+const s = "   fly me   to   the moon  ";
 console.log('lengthOfLastWord: ', lengthOfLastWord(s));
