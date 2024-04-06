@@ -26,4 +26,3 @@ class Solution:
 s = "lee(t(c)o)de)"
 solution = Solution()
 print('minRemoveToMakeValid: ', solution.minRemoveToMakeValid(s))
-    
