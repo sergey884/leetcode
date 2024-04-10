@@ -37,10 +37,58 @@ The following rules define a **valid** string:
 
 ### Javascript
 ```javascript
+const checkValidString = (s) => {
+  let leftMin = 0;
+  let leftMax = 0;
 
+  for (let i = 0; i < s.length; i++) {
+    switch (s[i]) {
+      case '(':
+        leftMin++;
+        leftMax++;
+        break;
+      case ')':
+        leftMin--;
+        leftMax--;
+        break;
+      case '*':
+        leftMin--;
+        leftMax++;
+        break;
+    }
+
+    if (leftMax < 0) {
+      return false;
+    }
+
+    if (leftMin < 0) {
+      leftMin = 0;
+    }
+  }
+
+  return leftMin === 0;
+};
 ```
 
 ### Python
 ```python
-
+class Solution:
+  def checkValidString(self, s: str) -> bool:
+    leftMin, leftMax = 0, 0
+    
+    for c in s:
+      if c == '(':
+        leftMin, leftMax = leftMin + 1, leftMax + 1
+      elif c == ')':
+        leftMin, leftMax = leftMin - 1, leftMax - 1
+      else:
+        leftMin, leftMax = leftMin - 1, leftMax + 1
+        
+      if leftMax < 0:
+        return False
+      
+      if leftMin < 0:
+        leftMin = 0
+        
+    return leftMin == 0
 ```
