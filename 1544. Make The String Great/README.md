@@ -44,6 +44,9 @@ Return the string after making it good. The answer is guaranteed to be unique un
 - `1 <= s.length <= 100`
 - `s` contains only lower and upper case English letters.
 
+
+## Solutions
+
 ### Javascript
 ```javascript
 const makeGood = (s) => {
