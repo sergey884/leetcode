@@ -37,10 +37,60 @@ Given string num representing a non-negative integer `num`, and an integer `k`, 
 
 ### Javascript
 ```javascript
+const removeKdigits = (num, k) => {
+  if (num.length === k) {
+    return '0';
+  }
 
+  const stack = [];
+  const res = [];
+
+  for (let i = 0; i < num.length; i++) {
+    while (k > 0 && stack.length && stack[stack.length - 1] > num[i]) {
+      k--;
+      stack.pop();
+    }
+    stack.push(num[i]);
+  }
+
+  for (let i = 0; i < k; i++) {
+    stack.pop();
+  }
+
+  for (let i = 0; i < stack.length; i++) {
+    if (stack[i] === '0' && !res.length) {
+      continue;
+    }
+    res.push(stack[i]);
+  }
+
+  return res.length ? res.join('') : '0';
+};
 ```
 
 ### Python
 ```python
+class Solution:
+  def removeKdigits(self, num: str, k: int) -> str:
+    if len(num) == k:
+      return '0'
+  
+    stack = []
+    res = []
 
+    for c in num:
+      while k > 0 and stack and stack[-1] > c:
+        k -= 1
+        stack.pop()
+      stack.append(c)
+    
+    for _ in range(k):
+      stack.pop()
+
+    for c in stack:
+      if c == '0' and not res:
+        continue
+      res.append(c)
+
+    return ''.join(res) if res else "0"
 ```

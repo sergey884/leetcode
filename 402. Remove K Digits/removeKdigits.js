@@ -18,7 +18,7 @@ const removeKdigits = (num, k) => {
     }
     stack.push(num[i]);
   }
-  console.log('res: ', stack, k, res);
+
   for (let i = 0; i < k; i++) {
     stack.pop();
   }
@@ -30,7 +30,7 @@ const removeKdigits = (num, k) => {
     res.push(stack[i]);
   }
 
-  return res ? res.join('') : '0';
+  return res.length ? res.join('') : '0';
 };
 
 
