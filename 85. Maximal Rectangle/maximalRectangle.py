@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-  def largestRectangeArea(self, heights):
+  def largestRectangleArea(self, heights):
     stack = []
     maxArea = 0
     index = 0
@@ -28,14 +28,11 @@ class Solution:
     maxArea = 0
     
     for row in matrix:
-      # print('ROW: ', row)
       for col in range(COLS):
         hights[col] = hights[col] + 1 if row[col] == "1" else 0
-      maxArea = max(maxArea, self.largestRectangeArea(hights))
-      print('hights: ', maxArea, hights)
+      maxArea = max(maxArea, self.largestRectangleArea(hights))
       
-    return maxArea
-        
+    return maxArea  
     
     
 matrix = [
