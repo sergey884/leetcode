@@ -1,4 +1,3 @@
-
 from collections import deque
 from typing import Optional
 # Definition for a binary tree node.
@@ -10,7 +9,6 @@ class TreeNode:
 
 class Solution:
   def isEvenOddTree(self, root: Optional[TreeNode]) -> bool:
-    level = 0
     even = True
     queue = deque([root])
 
@@ -53,4 +51,3 @@ root.right.right.right = TreeNode(2)
 
 solution = Solution()
 print('isEvenOddTree: ', solution.isEvenOddTree(root))
-

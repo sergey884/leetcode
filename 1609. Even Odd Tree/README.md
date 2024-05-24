@@ -61,6 +61,42 @@ Given the `root` of a binary tree, return `true` if the binary tree is **Even-Od
 
 ## Solutions
 
+### Javascript
+```javascript
+const isEvenOddTree = (root) => {
+  let even = true;
+  const q = [root];
+
+  while (q.length) {
+    let prev = even ? -Infinity : Infinity;
+    const len = q.length;
+    for (let i = 0; i < len; i++) {
+      const node = q.shift();
+      if (even && (node.val % 2 === 0 || node.val <= prev)) {
+        return false;
+      }
+
+      if (!even && (node.val % 2 === 1 || node.val >= prev)) {
+        return false;
+      }
+
+      if (node.left) {
+        q.push(node.left);
+      }
+
+      if (node.right) {
+        q.push(node.right);
+      }
+
+      prev = node.val;
+    }
+    even = !even;
+  }
+
+  return true;
+};
+```
+
 ### Python
 ```python
 class Solution:
