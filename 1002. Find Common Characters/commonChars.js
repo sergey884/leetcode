@@ -34,5 +34,5 @@ const commonChars = (words) => {
     return res;
 };
 
-const words = ["bella","label","roller"];
+const words = ["bella", "label", "roller"];
 console.log('commonChars: ', commonChars(words));

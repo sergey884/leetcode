@@ -15,6 +15,7 @@ const minMovesToSeat = (seats, students) => {
   return res;
 };
 
+
 const seats = [4, 1, 5, 9];
 const students = [1, 3, 2, 6];
 console.log('minMovesToSeat: ', minMovesToSeat(seats, students));

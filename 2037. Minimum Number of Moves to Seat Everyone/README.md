@@ -13,7 +13,9 @@ Note that there may be **multiple** seats or students in the **same** position a
  
 ### Example 1:
 > Input: seats = [3,1,5], students = [2,7,4]
+>
 > Output: 4
+>
 > Explanation: The students are moved as follows:
 > - The first student is moved from from position 2 to position 1 using 1 move.
 > - The second student is moved from from position 7 to position 5 using 2 moves.
@@ -23,7 +25,9 @@ Note that there may be **multiple** seats or students in the **same** position a
 
 ### Example 2:
 > Input: seats = [4,1,5,9], students = [1,3,2,6]
+>
 > Output: 7
+>
 > Explanation: The students are moved as follows:
 > - The first student is not moved.
 > - The second student is moved from from position 3 to position 4 using 1 move.
@@ -52,12 +56,36 @@ Note that there may be **multiple** seats or students in the **same** position a
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: `O(n * log(n))`
+- **Space Complexity**: `O(1)`
+
 ### Javascript
 ```javascript
+const minMovesToSeat = (seats, students) => {
+  seats.sort((a, b) => a - b);
+  students.sort((a, b) => a - b);
 
+  let res = 0;
+  for (let i = 0; i < students.length; i++) {
+    res += Math.abs(students[i] - seats[i])
+  }
+
+  return res;
+};
 ```
 
 ### Python
 ```python
-
+class Solution:
+  def minMovesToSeat(self, seats: List[int], students: List[int]) -> int:
+    seats.sort()
+    students.sort()
+    
+    res = 0
+    for i in range(len(students)):
+      res += abs(students[i] - seats[i])
+      
+    return res
 ```
