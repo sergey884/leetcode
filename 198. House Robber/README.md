@@ -37,7 +37,7 @@ Given an integer array nums representing the amount of money of each house, retu
 - **Time Complexity**: `O(n)`
 - **Space Complexity**: `O(1)`
 
-### Javascript (Swaping algorithm)
+### Javascript
 ```javascript
 const rob = (nums) => {
   let rob1 = 0;
