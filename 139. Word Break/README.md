@@ -67,7 +67,6 @@ const wordBreak = (s, wordDict) => {
 
   return dp[0];
 };
-
 ```
 
 ### Performance
