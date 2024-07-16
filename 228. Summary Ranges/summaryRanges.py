@@ -2,19 +2,29 @@ from typing import List
 
 class Solution:
   def summaryRanges(self, nums: List[int]) -> List[str]:
+    if not nums:
+      return []
+
     res = []
-    temp = ''
-    for i in range(len(nums)):
-      if i + 1 < len(nums) and nums[i] + 1 == nums[i + 1]:
-        temp += str(nums[i]) + '->'
-      else:
-        res.append(temp + str(nums[i]))
-        temp = ''
+    rangeStart = nums[0]
+
+    for i in range(1, len(nums)):
+      if nums[i - 1] + 1 != nums[i]:
+        if rangeStart == nums[i - 1]:
+          res.append(str(nums[i - 1]))
+        else:
+          res.append(f"{rangeStart}->{nums[i - 1]}")
+        rangeStart =  nums[i]
+        
+    if rangeStart == nums[-1]:
+      res.append(str(nums[-1]))
+    else:
+      res.append(f"{rangeStart}->{nums[-1]}")
         
     return res
 
 
-nums = [0,1,2,4,5,7]
+nums = [0, 1, 2, 4, 5, 7]
 # ["0->2","4->5","7"]
 solution = Solution()
 print('summaryRanges: ', solution.summaryRanges(nums))

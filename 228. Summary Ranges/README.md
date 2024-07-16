@@ -58,7 +58,34 @@ Each range `[a,b]` in the list should be output as:
 
 ### Javascript
 ```javascript
+const summaryRanges = (nums) => {
+  if (!nums || !nums.length) {
+    return [];
+  }
 
+  let rangeStart = nums[0];
+  const res = [];
+  const len = nums.length;
+
+  for (let i = 1; i < len; i++) {
+    if (nums[i] !== nums[i - 1] + 1) {
+      if (rangeStart === nums[i - 1]) {
+        res.push(String(nums[i - 1]));
+      } else {
+        res.push(`${rangeStart}->${nums[i - 1]}`);
+      }
+      rangeStart = nums[i];
+    }
+  }
+
+  if (rangeStart === nums[len - 1]) {
+    res.push(String(nums[len - 1]));
+  } else {
+    res.push(`${rangeStart}->${nums[len - 1]}`);
+  }
+
+  return res;
+};
 ```
 
 ### Performance
@@ -68,5 +95,26 @@ Each range `[a,b]` in the list should be output as:
 
 ### Python
 ```python
+class Solution:
+  def summaryRanges(self, nums: List[int]) -> List[str]:
+    if not nums:
+      return []
 
+    res = []
+    rangeStart = nums[0]
+
+    for i in range(1, len(nums)):
+      if nums[i - 1] + 1 != nums[i]:
+        if rangeStart == nums[i - 1]:
+          res.append(str(nums[i - 1]))
+        else:
+          res.append(f"{rangeStart}->{nums[i - 1]}")
+        rangeStart =  nums[i]
+        
+    if rangeStart == nums[-1]:
+      res.append(str(nums[-1]))
+    else:
+      res.append(f"{rangeStart}->{nums[-1]}")
+        
+    return res
 ```
