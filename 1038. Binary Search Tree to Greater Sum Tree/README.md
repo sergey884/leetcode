@@ -71,7 +71,6 @@ const bstToGst = (root) => {
 
 ### Python
 ```python
-
 class Solution:
   def bstToGst(self, root: TreeNode) -> TreeNode:
     self.sum = 0
