@@ -36,7 +36,7 @@ Return `names` sorted in **descending** order by the people's heights.
 
 ### Performance
 
-- **Time Complexity**: `O(n)`
+- **Time Complexity**: `O(n * log n)`
 - **Space Complexity**: `O(n)`
 
 ### Javascript
@@ -59,7 +59,7 @@ const sortPeople = (names, heights) => {
 
 ### Performance
 
-- **Time Complexity**: `O(n)`
+- **Time Complexity**: `O(n * log n)`
 - **Space Complexity**: `O(n)`
 
 ### Python
