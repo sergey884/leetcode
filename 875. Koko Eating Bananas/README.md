@@ -37,8 +37,8 @@ Return the minimum integer $k$ such that she can eat all the bananas within $h$ 
 
 ### Performance
 
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
+- **Time Complexity**: $O(n * log(max(piles)))$
+- **Space Complexity**: `O(1)`
 
 ### Javascript
 ```javascript
@@ -68,8 +68,8 @@ const minEatingSpeed = (piles, h) => {
 
 ### Performance
 
-- **Time Complexity**: `O(n)`
-- **Space Complexity**: `O(n)`
+- **Time Complexity**: $O(n * log(max(piles)))$
+- **Space Complexity**: `O(1)`
 
 ### Python
 ```python
