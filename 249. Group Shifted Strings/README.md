@@ -43,7 +43,7 @@ You are given an array of strings `strings`, group together all `strings[i]` tha
 const groupStrings = (strings) => {
   const group = {};
   const shiftLetter = (letter, shift) => {
-    const chCode = (letter.charCodeAt(0) - shift) % 26 + 'a'.charCodeAt(0);
+    const chCode = (letter.charCodeAt(0) - shift + 26) % 26 + 'a'.charCodeAt(0);
     return chCode;
   }
 
