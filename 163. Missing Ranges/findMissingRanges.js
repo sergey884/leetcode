@@ -33,4 +33,3 @@ const lower = 0;
 const upper = 99;
 // Output: [[2,2], [4,49], [51,74], [76,99]]
 console.log('findMissingRanges: ', findMissingRanges(nums, lower, upper));
-     
