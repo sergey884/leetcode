@@ -12,4 +12,3 @@ class Solution:
 
 solution = Solution()
 print("findComplement: ", solution.findComplement(5)) # 2
-        
