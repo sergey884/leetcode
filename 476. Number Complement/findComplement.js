@@ -4,14 +4,15 @@
  */
 const findComplement = (num) => {
   let bitmask = 1;
-  let todo = num;
-  while (todo) {
+  let numCopy = num;
+  while (numCopy) {
     num = num ^ bitmask;
     bitmask = bitmask << 1;
-    todo = todo >> 1;
+    numCopy = numCopy >> 1;
   }
 
   return num;
 };
+
 
 console.log("findComplement: ", findComplement(5)); // 2

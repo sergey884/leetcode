@@ -34,20 +34,39 @@ Given an integer `num`, return its complement.
 
 ### Performance
 
-- **Time Complexity**: $O(n)$
-- **Space Complexity**: $O(n)$
+- **Time Complexity**: $O(log n)$
+- **Space Complexity**: $O(1)$
 
 ### Javascript
 ```javascript
+const findComplement = (num) => {
+  let bitmask = 1;
+  let numCopy = num;
+  while (numCopy) {
+    num = num ^ bitmask;
+    bitmask = bitmask << 1;
+    numCopy = numCopy >> 1;
+  }
 
+  return num;
+};
 ```
 
 ### Performance
 
-- **Time Complexity**: $O(n)$
-- **Space Complexity**: $O(n)$
+- **Time Complexity**: $O(log n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
+class Solution:
+  def findComplement(self, num: int) -> int:
+    bitmask = 1
+    numCopy = num
+    while numCopy:
+      num = num ^ bitmask
+      bitmask = bitmask << 1
+      numCopy = numCopy >> 1
 
+    return num
 ```
