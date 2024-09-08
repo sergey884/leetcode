@@ -44,4 +44,3 @@ root.right.right.right = TreeNode(1)
 
 solution = Solution()
 print('pathSum: ', solution.pathSum(root, 22)) # [[5, 4, 11, 2], [5, 8, 4, 5]]
-
