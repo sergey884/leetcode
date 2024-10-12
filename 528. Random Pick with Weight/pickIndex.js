@@ -14,7 +14,7 @@ class Solution {
   };
 
   pickIndex() {
-    const target = Math.round(this.totalSum * Math.random());
+    const target = this.totalSum * Math.random();
     let left = 0;
     let right = this.prefixSum.length - 1;
     while (left < right) {
