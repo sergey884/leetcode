@@ -33,5 +33,5 @@ const firstMissingPositive = (nums) => {
 };
 
 const nums = [1, 2, 0];
-console.log('firstMissingPositive: ', firstMissingPositive(nums));
+console.log('firstMissingPositive: ', firstMissingPositive(nums)); // 3
    

@@ -36,6 +36,11 @@ You must implement an algorithm that runs in `O(n)` time and uses `O(1)` auxilia
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
 const firstMissingPositive = (nums) => {
@@ -68,6 +73,11 @@ const firstMissingPositive = (nums) => {
   return n + 1;
 };
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python

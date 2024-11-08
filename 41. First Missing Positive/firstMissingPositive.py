@@ -24,5 +24,5 @@ class Solution:
   
 nums = [1,2,0]
 solution = Solution()
-print('firstMissingPositive: ', solution.firstMissingPositive(nums))
+print('firstMissingPositive: ', solution.firstMissingPositive(nums)) // 3
         
