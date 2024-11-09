@@ -6,11 +6,9 @@ class Solution:
     COLS = len(grid[0])
 
     dp = [[0] * COLS for _ in range(ROWS)]
-    print('dp: ', dp)
 
     for r in range(ROWS - 1, -1, -1):
       for c in range(COLS - 1, -1, -1):
-        print('r, c: ', r, c)
         if r == ROWS - 1 and c != COLS - 1:
           dp[r][c] = grid[r][c] + dp[r][c + 1]
         elif r != ROWS - 1 and c == COLS - 1:
