@@ -47,20 +47,115 @@ Implement the Trie class:
 
 ### Performance
 
-- **Time Complexity**: $O(n log n)$
+- **Time Complexity**: $O(n)$
 - **Space Complexity**: $O(n)$
 
 ### Javascript
 ```javascript
+class TrieNode {
+  constructor() {
+    this.children = {};
+    this.isEnd = false;
+  }
+}
 
+class Trie {
+  constructor() {
+    this.root = new TrieNode();
+  }
+
+  /**
+   * @param {string} word
+   * @return {void}
+   */
+  insert(word) {
+    let curr = this.root;
+    for (let i = 0; i < word.length; i++) {
+      const char = word[i];
+      if (!curr.children[char]) {
+        curr.children[char] = new TrieNode();
+      }
+      curr = curr.children[char];
+    }
+    curr.isEnd = true;
+  }
+
+  /**
+   * @param {string} word
+   * @return {boolean}
+   */
+  search(word) {
+    let curr = this.root;
+    for (let i = 0; i < word.length; i++) {
+      const char = word[i];
+      if (!curr.children[char]) {
+        return false;
+      }
+      curr = curr.children[char];
+    }
+
+    return curr.isEnd;
+  }
+
+  /**
+   * @param {string} prefix
+   * @return {boolean}
+   */
+  startsWith(prefix) {
+    let curr = this.root;
+    for (let i = 0; i < prefix.length; i++) {
+      const char = prefix[i];
+      if (!curr.children[char]) {
+        return false;
+      }
+      curr = curr.children[char];
+    }
+
+    return true;
+  }
+}
 ```
 
 ### Performance
 
-- **Time Complexity**: $O(n log n)$
+- **Time Complexity**: $O(n)$
 - **Space Complexity**: $O(n)$
 
 ### Python
 ```python
+class TrieNode:
+  def __init__(self):
+    self.children = {}
+    self.isEnd = False
 
+class Trie:
+  def __init__(self):
+    self.root = TrieNode()
+
+  def insert(self, word: str) -> None:
+    curr = self.root
+    for c in word:
+      if c not in curr.children:
+        curr.children[c] = TrieNode()
+      curr = curr.children[c]
+    curr.isEnd = True
+
+  def search(self, word: str) -> bool:
+    curr = self.root
+    for c in word:
+      if c not in curr.children:
+        return False
+      curr = curr.children[c]
+    
+    return curr.isEnd
+        
+
+  def startsWith(self, prefix: str) -> bool:
+    curr = self.root
+
+    for c in prefix:
+      if c not in curr.children:
+        return False
+      curr = curr.children[c]
+    return True
 ```
