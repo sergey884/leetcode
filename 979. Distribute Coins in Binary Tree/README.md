@@ -33,12 +33,54 @@ Explanation: From the left child of the root, we move two coins to the root [tak
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(h)$
+
 ### Javascript
 ```javascript
+const distributeCoins = (root) => {
+  let moves = 0;
+  const dfs = (node) => {
+    if (!node) {
+      return 0;
+    }
 
+    const leftCoins = dfs(node.left);
+    const rightCoins = dfs(node.right);
+
+    moves += Math.abs(leftCoins) + Math.abs(rightCoins);
+
+    return node.val - 1 + leftCoins + rightCoins;
+  };
+
+  dfs(root);
+  return moves;
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(h)$
 
 ### Python
 ```python
+class Solution:
+  def distributeCoins(self, root: Optional[TreeNode]) -> int:
+    self.moves = 0
+    def dfs(node):
+      if not node:
+        return 0
+      
+      leftCoins = dfs(node.left)
+      rightCoins = dfs(node.right)
 
+      self.moves += abs(leftCoins) + abs(rightCoins)
+
+      return (node.val - 1) + leftCoins + rightCoins
+    
+    dfs(root)
+    return self.moves
 ```
