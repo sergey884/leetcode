@@ -48,8 +48,7 @@ const validPath = (n, edges, source, destination) => {
       const [u, v] = edges[i];
       uf.union(u, v);
     }
-    console.log('uf.find(source): ', uf.find(source));
-    console.log('uf.find(destination): ', uf.find(destination));
+
     return uf.find(source) === uf.find(destination);
 };
 
@@ -62,6 +61,5 @@ const n = 6;
 const edges = [[0,1],[0,2],[3,5],[5,4],[4,3]];
 const source = 0;
 const destination = 5;
-
 
 console.log('validPath: ', validPath(n, edges, source, destination));

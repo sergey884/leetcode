@@ -42,12 +42,107 @@ Given `edges` and the integers `n`, `source`, and `destination`, return `true` i
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
+
 ### Javascript
 ```javascript
+class UnionFind {
+  constructor(n) {
+    this.id = [];
+    for (let i = 0; i < n; i++) {
+      this.id[i]= i;
+    }
+    this.rank = Array(n).fill(1);
+  }
 
+  union(u, v) {
+    const rootU = this.find(u);
+    const rootV = this.find(v);
+
+    if (rootU === rootV) {
+      return;
+    }
+
+    if (this.rank[rootU] < this.rank[rootV]) {
+      this.id[rootU] = rootV;
+    } else if (this.rank[rootU] > this.rank[rootV]) {
+      this.id[rootV] = rootU;
+    } else {
+      this.id[rootU] = rootV;
+      this.rank[rootV]++;
+    }
+  }
+
+  find(u) {
+    if (this.id[u] !== u) {
+      this.id[u] = this.find(this.id[u])
+    }
+
+    return this.id[u];
+  }
+}
+
+/**
+ * @param {number} n
+ * @param {number[][]} edges
+ * @param {number} source
+ * @param {number} destination
+ * @return {boolean}
+ */
+const validPath = (n, edges, source, destination) => {
+    const uf = new UnionFind(n);
+
+    for (let i = 0; i < edges.length; i++) {
+      const [u, v] = edges[i];
+      uf.union(u, v);
+    }
+
+    return uf.find(source) === uf.find(destination);
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
 
 ### Python
 ```python
+class UnionFind:
+  def __init__(self, n: int) -> None:
+    self.id = [i for i in range(n)]
+    self.rank = [0] * n
 
+  def union(self, x: int, y: int) -> None:
+    rootX = self.find(x)
+    rootY = self.find(y)
+
+    if rootX == rootY:
+      return
+
+    if self.rank[rootX] < self.rank[rootY]:
+      self.id[rootX] = rootY
+    elif self.rank[rootX] > self.rank[rootY]:
+      self.id[rootY] = rootX
+    else:
+      self.id[rootX] = rootY
+      self.rank[rootY] += 1
+
+  def find(self, x: int) -> int:
+    if self.id[x] != x:
+      self.id[x] = self.find(self.id[x])
+    return self.id[x]
+
+
+class Solution:
+  def validPath(self, n: int, edges: List[List[int]], source: int, destination: int) -> bool:
+    uf = UnionFind(n)
+
+    for u, v in edges:
+      uf.union(u, v)
+
+    return uf.find(source) == uf.find(destination)
 ```
