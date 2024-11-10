@@ -10,27 +10,31 @@ class TreeNode:
 class Solution:
   def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
     if not root:
-      return
+      return []
 
     q = deque([(root, 0)])
     cols = {}
     res = []
+    maxColumn = 0
+    minColumn = 0
     
     while q:
-      node, index = q.popleft()
-      
-      if index not in cols:
-        cols[index] = []
-      cols[index].append(node.val)
+      node, column = q.popleft()
+      maxColumn = max(maxColumn, column)
+      minColumn = min(minColumn, column)
+
+      if column not in cols:
+        cols[column] = []
+      cols[column].append(node.val)
       
       if node.left:
-        q.append((node.left, index - 1))
+        q.append((node.left, column - 1))
         
       if node.right:
-        q.append((node.right, index + 1))
+        q.append((node.right, column + 1))
         
-    for key in sorted(cols.keys()):
-      res.append(cols[key])
+    for i in range(minColumn, maxColumn + 1):
+      res.append(cols[i])
 
     return res
     

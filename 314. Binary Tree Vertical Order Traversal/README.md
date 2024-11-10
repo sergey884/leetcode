@@ -40,7 +40,43 @@ If two nodes are in the same row and column, the order should be from **left to 
 
 ### Javascript
 ```javascript
+const verticalOrder = (root) => {
+  if (!root) {
+    return [];
+  }
 
+  const queue = [[root, 0]];
+  const nodesByColumn = {};
+  const res = [];
+  let maxColumn = 0;
+  let minColumn = 0;
+
+  while (queue.length) {
+    const [node, column] = queue.shift();
+    maxColumn = Math.max(maxColumn, column);
+    minColumn = Math.min(minColumn, column);
+
+    if (!nodesByColumn[column]) {
+      nodesByColumn[column] = [];
+    }
+
+    nodesByColumn[column].push(node.val)
+
+    if (node.left) {
+      queue.push([node.left, column - 1]);
+    }
+
+    if (node.right) {
+      queue.push([node.right, column + 1]);
+    }
+  }
+
+  for (let i = minColumn; i <= maxColumn; i++) {
+    res.push(nodesByColumn[i]);
+  }
+
+  return res;
+};
 ```
 
 ### Performance
@@ -50,5 +86,34 @@ If two nodes are in the same row and column, the order should be from **left to 
 
 ### Python
 ```python
+class Solution:
+  def verticalOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+    if not root:
+      return []
 
+    q = deque([(root, 0)])
+    cols = {}
+    res = []
+    maxColumn = 0
+    minColumn = 0
+    
+    while q:
+      node, column = q.popleft()
+      maxColumn = max(maxColumn, column)
+      minColumn = min(minColumn, column)
+
+      if column not in cols:
+        cols[column] = []
+      cols[column].append(node.val)
+      
+      if node.left:
+        q.append((node.left, column - 1))
+        
+      if node.right:
+        q.append((node.right, column + 1))
+        
+    for i in range(minColumn, maxColumn + 1):
+      res.append(cols[i])
+
+    return res
 ```
