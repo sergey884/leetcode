@@ -70,12 +70,43 @@ An array `a` is a **subset** of an array `b` if `a` can be obtained from `b` by 
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(2^{n})$
+- **Space Complexity**: $O(n)$
+
 ### Javascript
 ```javascript
+const subsetXORSum = (nums) => {
+  let result = 0;
+  const dfs = (index, currentXor) => {
+    if (index === nums.length) {
+      result += currentXor;
+      return;
+    }
 
+    dfs(index + 1, currentXor);
+    dfs(index + 1, currentXor ^ nums[index]);
+  }
+
+  dfs(0, 0);
+  return result;
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(2^{n})$
+- **Space Complexity**: $O(n)$
 
 ### Python
 ```python
-
+class Solution:
+  def subsetXORSum(self, nums: List[int]) -> int:
+    def dfs(i, total):
+      if i == len(nums):
+        return total
+      
+      return dfs(i + 1, total ^ nums[i]) + dfs(i + 1, total)
+    return dfs(0, 0)
 ```

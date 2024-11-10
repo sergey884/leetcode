@@ -8,3 +8,8 @@ class Solution:
       
       return dfs(i + 1, total ^ nums[i]) + dfs(i + 1, total)
     return dfs(0, 0)
+
+
+nums = [5, 1, 6]
+solution = Solution()
+print('subsetXORSum: ', solution.subsetXORSum(nums))
