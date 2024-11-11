@@ -51,8 +51,8 @@ Basically, the deletion can be divided into two stages:
 
 ### Performance
 
-- **Time Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
-- **Space Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
+- **Time Complexity**: $O(h)$, which is $O(logn)$ for a balanced BST and $O(n)$ in the worst case (unbalanced BST)
+- **Space Complexity**: $O(h)$, which is $O(logn)$ for a balanced BST and $O(n)$ in the worst case (unbalanced BST)
 
 ### Javascript
 ```javascript
@@ -99,8 +99,8 @@ const deleteNode = (root, key) => {
 
 ### Performance
 
-- **Time Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
-- **Space Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
+- **Time Complexity**: $O(h)$, which is $O(logn)$ for a balanced BST and $O(n)$ in the worst case (unbalanced BST)
+- **Space Complexity**: $O(h)$, which is $O(logn)$ for a balanced BST and $O(n)$ in the worst case (unbalanced BST)
 
 ### Python
 ```python

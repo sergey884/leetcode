@@ -31,20 +31,41 @@ Given an integer array `nums`, return the length of the longest **strictly incre
 
 ### Performance
 
-- **Time Complexity**: `O(n * m * k)`
-- **Space Complexity**: `O(n)`
+- **Time Complexity**: $O(n^{2})$
+- **Space Complexity**: $O(n)$
 
 ### Javascript
 ```javascript
+const lengthOfLIS = (nums) => {
+  const dp = Array(nums.length).fill(1);
 
+  for (let i = nums.length - 1; i >= 0; i--) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] < nums[j]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+      }
+    }
+  }
+
+  return Math.max(...dp);
+};
 ```
 
 ### Performance
 
-- **Time Complexity**: `O(n * m * k)`
-- **Space Complexity**: `O(n)`
+- **Time Complexity**: $O(n^{2})$
+- **Space Complexity**: $O(n)$
 
 ### Python
 ```python
+class Solution:
+  def lengthOfLIS(self, nums: List[int]) -> int:
+    dp = [1] * len(nums)
 
+    for i in range(len(nums) - 1, -1, -1):
+      for j in range(i + 1, len(nums)):
+        if nums[i] < nums[j]:
+          dp[i] = max(dp[i], 1 + dp[j])
+
+    return max(dp)
 ```
