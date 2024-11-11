@@ -51,20 +51,89 @@ Basically, the deletion can be divided into two stages:
 
 ### Performance
 
-- **Time Complexity**: $O(n)$
-- **Space Complexity**: $O(1)$
+- **Time Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
+- **Space Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
 
 ### Javascript
 ```javascript
+const deleteNode = (root, key) => {
+  const successor = (nodeElement) => {
+    let node = nodeElement.right;
+    while (node.left) {
+      node = node.left;
+    }
+    return node.val;
+  };
 
+  const predecessor = (nodeElement) => {
+    let node = nodeElement.left;
+    while (node.right) {
+      node = node.right;
+    }
+    return node.val;
+  }
+
+  if (!root) {
+    return null;
+  }
+
+  if (key > root.val) {
+    root.right = deleteNode(root.right, key);
+  } else if (key < root.val) {
+    root.left = deleteNode(root.left, key);
+  } else {
+    if (!root.left && !root.right) {
+      root = null;
+    } else if (root.right) {
+      root.val = successor(root);
+      root.right = deleteNode(root.right, root.val);
+    } else {
+      root.val = predecessor(root);
+      root.left = deleteNode(root.left, root.val);
+    }
+  }
+
+  return root;
+};
 ```
 
 ### Performance
 
-- **Time Complexity**: $O(n)$
-- **Space Complexity**: $O(1)$
+- **Time Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
+- **Space Complexity**: $O(h), which is O(logn) for a balanced BST and O(n) in the worst case (unbalanced BST)$
 
 ### Python
 ```python
+class Solution:
+  def successor(self, node: Optional[TreeNode]) -> int:
+    node = node.right
+    while node.left:
+      node = node.left
+    return node.val
+  
+  def predecessor(self, node: Optional[TreeNode]) -> int:
+    node = node.left
+    while node.right:
+      node = node.right
+    return node.val
 
+  def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+    if not root:
+      return None
+    
+    if key > root.val:
+      root.right = self.deleteNode(root.right, key)
+    elif key < root.val:
+      root.left = self.deleteNode(root.left, key)
+    else:
+      if not (root.left or root.right):
+        root = None
+      elif root.right:
+        root.val = self.successor(root)
+        root.right = self.deleteNode(root.right, root.val)
+      else:
+        root.val = self.predecessor(root)
+        root.left = self.deleteNode(root.left, root.val)
+    
+    return root
 ```
