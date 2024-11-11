@@ -29,3 +29,65 @@ You must write an algorithm that runs in linear runtime complexity and uses only
 - `2 <= nums.length <= 3 *` $10^4$
 - $-2^{31}$ `<= nums[i] <=` $2^{31}$ `- 1`
 - Each integer in `nums` will appear twice, only two integers will appear once.
+
+
+## Solutions
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
+### Javascript
+```javascript
+const singleNumber = (nums) => {
+  let xor = 0;
+  for (let i = 0; i < nums.length; i++) {
+    xor ^= nums[i];
+  }
+
+  let diffBit = 1;
+  while (!(diffBit & xor)) {
+    diffBit = diffBit << 1;
+  }
+
+  let a = 0;
+  let b = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (diffBit & nums[i]) {
+      a = a ^ nums[i];
+    } else {
+      b = b ^ nums[i];
+    }
+  }
+
+  return [a, b];
+};
+```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
+### Python
+```python
+class Solution:
+  def singleNumber(self, nums: List[int]) -> List[int]:
+    xor = 0
+    for  n in nums:
+      xor ^= n
+
+    diffBit = 1
+    while not xor & diffBit:
+      diffBit = diffBit << 1
+
+    a, b = 0, 0
+    for n in nums:
+      if diffBit & n:
+        a = a ^ n
+      else:
+        b = b ^ n
+
+    return [a, b]
+```
