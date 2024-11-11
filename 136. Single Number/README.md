@@ -31,6 +31,11 @@ You must implement a solution with a linear runtime complexity and use only cons
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
 const singleNumber = (nums) => {
@@ -43,6 +48,11 @@ const singleNumber = (nums) => {
   return res;
 };
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
