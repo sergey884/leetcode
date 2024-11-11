@@ -32,12 +32,74 @@ You may not modify the values in the list's nodes. Only nodes themselves may be 
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
+const reorderList = (head) => {
+  let slow = head;
+  let fast = head.next;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
 
+  let second = slow.next;
+  let prev = slow.next = null;
+  while (second) {
+    let temp = second.next;
+    second.next = prev;
+    prev = second;
+    second = temp;
+  }
+
+  let first = head;
+  second = prev;
+  while (second) {
+    let temp1 = first.next;
+    let temp2 = second.next;
+    first.next = second;
+    second.next = temp1;
+    first = temp1;
+    second = temp2;
+  }
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
-
+class Solution:
+  def reorderList(self, head: Optional[ListNode]) -> None:
+    """
+    Do not return anything, modify head in-place instead.
+    """
+    slow, fast = head, head.next
+    while fast and fast.next:
+      slow = slow.next
+      fast = fast.next.next
+    
+    second = slow.next
+    prev = slow.next = None
+    while second:
+      temp = second.next
+      second.next = prev
+      prev = second
+      second = temp
+      
+    first, second = head, prev
+    while second:
+      temp1 = first.next
+      temp2 = second.next
+      first.next = second
+      second.next = temp1
+      first = temp1
+      second = temp2
 ```
