@@ -11,7 +11,7 @@ class ListNode {
  * @param {number} n
  * @return {ListNode}
  */
-var removeNthFromEnd = function(head, n) {
+const removeNthFromEnd = (head, n) => {
   const dummyHead = new ListNode(0, head);
   let slow = dummyHead;
   let fast = head;
@@ -30,6 +30,7 @@ var removeNthFromEnd = function(head, n) {
 
   return dummyHead.next;
 };
+
 
 const head = new ListNode(1);
 head.next = new ListNode(2);

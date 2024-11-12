@@ -33,6 +33,11 @@ Given the `head` of a linked list, remove the `nth` node from the end of the lis
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
 var removeNthFromEnd = function(head, n) {
@@ -55,6 +60,11 @@ var removeNthFromEnd = function(head, n) {
   return dummyHead.next;
 };
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
