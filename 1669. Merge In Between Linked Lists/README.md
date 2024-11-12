@@ -35,6 +35,11 @@ Build the result list and return its head.
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n + m)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
 const mergeInBetween = (list1, a, b, list2) => {
@@ -64,6 +69,11 @@ const mergeInBetween = (list1, a, b, list2) => {
   return list1
 };
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n + m)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
