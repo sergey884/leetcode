@@ -39,3 +39,76 @@ You are given an array of CPU `tasks`, each represented by letters A to Z, and a
 - `1 <= tasks.length <=` $10^4$
 - `tasks[i]` is an uppercase English letter.
 - `0 <= n <= 100`
+
+
+## Solutions
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
+### Javascript
+```javascript
+const leastInterval = (tasks, n) => {
+  const frequency = {};
+  for (const task of tasks) {
+    frequency[task] = frequency[task] + 1 || 1;
+  }
+
+  let maxVal = 0;
+  let maxValCount = 0;
+
+  for (const key in frequency) {
+    if (frequency[key] > maxVal) {
+      maxVal = frequency[key];
+      maxValCount = 1;
+    } else if (frequency[key] === maxVal) {
+      maxValCount++;
+    }
+  }
+
+  // Example ["A","A","A","B","B","C"], n = 2
+  // A _ _ A _ _ A
+  // Find the number of parts separated by A: partCount = count(A) - 1 = 2
+  // Determine the number of empty slots: emptySlots = partCount * n = 4
+  // Identify the number of tasks to be placed into those slots: availableTasks = tasks.length - count(A) = 3.
+  // Determine the number of idles: idles = max(0, emptySlots - availableTasks) = 1
+  // Determine the number of required slots: tasks.length + idles = 6 + 1 = 7
+
+  const partCount = maxVal - 1;
+  const partLength = n - (maxValCount - 1);
+  const emptySlots = partCount * partLength;
+  const availableTasks = tasks.length - maxVal * maxValCount;
+  const idles = Math.max(0, emptySlots - availableTasks);
+
+  return tasks.length + idles;
+};
+```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
+### Python
+```python
+class Solution:
+  def leastInterval(self, tasks: List[str], n: int) -> int:
+    count = Counter(tasks)
+    maxHeap = [-cnt for cnt in count.values()]
+    heapq.heapify(maxHeap)
+
+    time = 0
+    q = deque()
+    while maxHeap or q:
+      time += 1
+      if maxHeap:
+        cnt = 1 + heapq.heappop(maxHeap)
+        if cnt:
+          q.append([cnt, time + n])
+      if q and q[0][1] == time:
+        heapq.heappush(maxHeap, q.popleft()[0])
+
+    return time
+```
