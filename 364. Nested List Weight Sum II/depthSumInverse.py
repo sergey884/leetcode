@@ -43,16 +43,29 @@
 
 class Solution:
   def depthSumInverse(self, nestedList) -> int:
-    def getMaxDepth(list):
+    def getMaxDepth(nestedList):
       maxDepth = 1
-      for i in range(len(list)):
-        if type(list[i]) is not int:
-          maxDepth = max(maxDepth, 1 + getMaxDepth(list[i]))
+      for item in nestedList:
+        if not item.isInteger() and len(item.getList()) > 0:
+          maxDepth = max(maxDepth, 1 + getMaxDepth(item.getList()))
       
       return maxDepth
     
-    return getMaxDepth(nestedList)
-  
+    def sumDepthNestedList(nestedList, depth):
+      sum = 0
+      for item in nestedList:
+        if item.isInteger():
+          sum += item.getInteger() * depth
+        else:
+          sum += sumDepthNestedList(item.getList(), depth - 1)
+      
+      return sum
+    
+    maxDepth = getMaxDepth(nestedList)
+      
+    return sumDepthNestedList(nestedList, maxDepth)
+
+
 nestedList = [[1,1],2,[1,1]]
 solution = Solution()
 print('depthSumInverse: ', solution.depthSumInverse(nestedList))
