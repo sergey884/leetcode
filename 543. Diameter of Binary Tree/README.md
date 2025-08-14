@@ -29,6 +29,39 @@ The length of a path between two nodes is represented by the number of edges bet
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: `O(n)`
+- **Space Complexity**: `O(h)` where h is tree height. Worst case scenario is `O(n)`, in case of balanced tree `O(log N)`
+
+### Javascript
+```javascript
+const diameterOfBinaryTree = (root) => {
+  let diameter = 0;
+
+  const dfs = (node) => {
+    if (!node) {
+      return 0;
+    }
+
+    const left = dfs(node.left);
+    const right = dfs(node.right);
+
+    diameter = Math.max(diameter, left + right);
+
+    return Math.max(left, right) + 1;
+  }
+
+  dfs(root);
+  return diameter;
+};
+```
+
+### Performance
+
+- **Time Complexity**: `O(n)`
+- **Space Complexity**: `O(h)` where h is tree height. Worst case scenario is `O(n)`, in case of balanced tree `O(log N)`
+
 ### Python
 ```python
 class Solution:
