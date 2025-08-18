@@ -36,12 +36,68 @@ Return any permutation of `s` that satisfies this property.
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
+
 ### Javascript
 ```javascript
+const customSortString = (order, s) => {
+  let res = '';
+  const count = Array(26).fill(0);
 
+  const charA = 'a'.charCodeAt(0)
+
+  for (let i = 0; i < s.length; i++) {
+    let pos = s[i].charCodeAt(0) - charA;
+    count[pos]++;
+  }
+
+  for (let i = 0; i < order.length; i++) {
+    let pos = order[i].charCodeAt(0) - charA;
+    if (count[pos] > 0) {
+      res += order[i].repeat(count[pos]);
+      count[pos] = 0;
+    }
+  }
+
+  for (let i = 0; i < s.length; i++) {
+    let pos = s[i].charCodeAt(0) - charA;
+    if (count[pos] > 0) {
+      res += s[i].repeat(count[pos]);
+      count[pos] = 0;
+    }
+  }
+
+  return res;
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(1)$
 
 ### Python
 ```python
+class Solution:
+  def customSortString(self, order: str, s: str) -> str:
+    count = [0] * 26
+    res = ''
+    
+    for c in s:
+      count[ord(c) - ord('a')] += 1
+      
+    for c in order:
+      res += c * count[ord(c) - ord('a')]
+      count[ord(c) - ord('a')] = 0
+      
+    for c in s:
+      chIndex = ord(c) - ord('a')
+      if count[chIndex] > 0:
+        res += c * count[chIndex]
+        count[chIndex] = 0
 
+    return res
 ```

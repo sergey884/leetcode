@@ -16,17 +16,17 @@ const customSortString = (order, s) => {
 
   for (let i = 0; i < order.length; i++) {
     let pos = order[i].charCodeAt(0) - charA;
-    while (count[pos] > 0) {
-      res += order[i];
-      count[pos]--;
+    if (count[pos] > 0) {
+      res += order[i].repeat(count[pos]);
+      count[pos] = 0;
     }
   }
 
   for (let i = 0; i < s.length; i++) {
     let pos = s[i].charCodeAt(0) - charA;
     if (count[pos] > 0) {
-      res += s[i];
-      count[pos]--;
+      res += s[i].repeat(count[pos]);
+      count[pos] = 0;
     }
   }
 
