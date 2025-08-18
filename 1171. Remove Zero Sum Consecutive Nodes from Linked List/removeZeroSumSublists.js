@@ -29,31 +29,27 @@ const arrayToLinkedList = (arr) => {
  * @return {ListNode}
  */
 const removeZeroSumSublists = (head) => {
-    let curr = head;
-    let prefix = 0;
-    const dummyHead = new ListNode(prefix, head);
-    let prefixToNode = { 0: dummyHead }
+  let curr = head;
+  let prefix = 0;
+  const dummyHead = new ListNode(prefix, head);
+  let prefixToNode = { 0: dummyHead }
 
-    while (curr) {
-      console.log('prefix: ', prefix);
-      prefix += curr.val;
-      prefixToNode[prefix] = curr;
-      curr = curr.next;
-    }
+  while (curr) {
+    prefix += curr.val;
+    prefixToNode[prefix] = curr;
+    curr = curr.next;
+  }
 
-    curr = dummyHead;
-    prefix = 0;
+  curr = dummyHead;
+  prefix = 0;
 
-    while (curr) {
-      prefix += curr.val;
-      curr.next = prefixToNode[prefix].next;
-      curr = curr.next;
-    }
+  while (curr) {
+    prefix += curr.val;
+    curr.next = prefixToNode[prefix].next;
+    curr = curr.next;
+  }
 
-    console.log('listToArr: ', listToArr);
-    console.log('listToArr: ', prefixToNode);
-    // console.log('dummyHead: ', dummyHead.next);
-    return dummyHead.next;
+  return dummyHead.next;
 };
 
 const head = arrayToLinkedList([1, 2, -3, 3, 1]);

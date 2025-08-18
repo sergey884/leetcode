@@ -35,12 +35,63 @@ After doing so, return the head of the final linked list.  You may return any su
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
+
 ### Javascript
 ```javascript
+const removeZeroSumSublists = (head) => {
+  let curr = head;
+  let prefix = 0;
+  const dummyHead = new ListNode(prefix, head);
+  let prefixToNode = { 0: dummyHead }
 
+  while (curr) {
+    prefix += curr.val;
+    prefixToNode[prefix] = curr;
+    curr = curr.next;
+  }
+
+  curr = dummyHead;
+  prefix = 0;
+
+  while (curr) {
+    prefix += curr.val;
+    curr.next = prefixToNode[prefix].next;
+    curr = curr.next;
+  }
+
+  return dummyHead.next;
+};
 ```
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
 
 ### Python
 ```python
+class Solution:
+  def removeZeroSumSublists(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    dummy = ListNode(0, head)
+    prefix_sum = 0
+    prefix_to_node = { 0: dummy }
+    curr = dummy
+    
+    while curr:
+      prefix_sum += curr.val
+      prefix_to_node[prefix_sum] = curr
+      curr = curr.next
+    
+    curr = dummy
+    prefix_sum = 0 
+    while curr:
+      prefix_sum += curr.val
+      curr.next = prefix_to_node[prefix_sum].next
+      curr = curr.next
 
+    return dummy.next
 ```
