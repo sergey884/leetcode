@@ -40,6 +40,12 @@ You can return the answer in any order.
 
 ## Solutions
 
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
+
+
 ### Javascript
 ```javascript
 const twoSum = (nums, target) => {
@@ -57,8 +63,13 @@ const twoSum = (nums, target) => {
   
   return [];
 };
-
 ```
+
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
 
 ### Python
 ```python
@@ -75,4 +86,31 @@ class Solution:
         previousValues[nums[i]] = i
 
     return []
+```
+
+
+### Performance
+
+- **Time Complexity**: $O(n)$
+- **Space Complexity**: $O(n)$
+
+### C++
+```c++
+class Solution {
+  public: 
+  vector<int> twoSum(vector<int>& nums, int target) {
+    std::unordered_map<int, int> num_map;
+
+    for (int i = 0; i < nums.size(); i++) {
+      int remaining_sum = target - nums[i];
+      if (num_map.find(remaining_sum) != num_map.end()) {
+        return { num_map[remaining_sum], i };
+      } else {
+        num_map[nums[i]] = i;
+      }
+    }
+
+    return {};
+  }
+};
 ```
